@@ -1,5 +1,5 @@
 ### 1. Prueba básica para ver si el servidor responde
-GET http://127.0.0.1:8000/
+GET http://127.0.0.1:8000/users
 
 ### 2. Prueba de Login
 POST http://127.0.0.1:8000/login
