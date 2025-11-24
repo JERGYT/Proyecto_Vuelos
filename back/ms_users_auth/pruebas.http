@@ -1,0 +1,11 @@
+### 1. Prueba básica para ver si el servidor responde
+GET http://127.0.0.1:8000/
+
+### 2. Prueba de Login
+POST http://127.0.0.1:8000/login
+Content-Type: application/json
+
+{
+    "email": "admin@system.com",
+    "password": "admin123"
+}
