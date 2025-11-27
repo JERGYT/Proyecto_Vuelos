@@ -20,6 +20,10 @@ class FlightsController {
 
     public function store(Request $request, Response $response) {
         $data = json_decode($request->getBody()->getContents(), true);
+        if (isset($data['price']) && $data['price'] < 0) {
+            $response->getBody()->write(json_encode(['error' => 'El precio no puede ser negativo']));
+            return $response->withStatus(400);
+        }
         $flight = $this->repository->create($data);
         $response->getBody()->write(json_encode($flight));
         return $response->withHeader('Content-Type', 'application/json')->withStatus(201);

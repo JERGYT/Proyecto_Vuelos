@@ -4,3 +4,22 @@ GET http://127.0.0.1:8001/api/flights
 ### 2. Acceso CON TOKEN 
 GET http://127.0.0.1:8001/api/flights
 Authorization: Bearer 9dda3cf2aff33e988fefd6a80efbbfe8
+
+### Crear una Reserva
+POST http://127.0.0.1:8001/api/reservations
+Content-Type: application/json
+Authorization: Bearer 9dda3cf2aff33e988fefd6a80efbbfe8
+
+{
+    "user_id": 2,
+    "flight_id": 1,
+    "status": "activa"
+}
+
+### Ver todas las Reservas
+GET http://127.0.0.1:8001/api/reservations
+Authorization: Bearer 9dda3cf2aff33e988fefd6a80efbbfe8
+
+### Cancelar la reserva ID 1
+PUT http://127.0.0.1:8001/api/reservations/1/cancel
+Authorization: Bearer 9dda3cf2aff33e988fefd6a80efbbfe8
