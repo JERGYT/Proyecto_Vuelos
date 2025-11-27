@@ -1,2 +1,6 @@
-### Consultar Vuelos
-GET http://127.0.0.1:8001/flights
+### 1. Intento de acceso SIN TOKEN 
+GET http://127.0.0.1:8001/api/flights
+
+### 2. Acceso CON TOKEN 
+GET http://127.0.0.1:8001/api/flights
+Authorization: Bearer 9dda3cf2aff33e988fefd6a80efbbfe8
