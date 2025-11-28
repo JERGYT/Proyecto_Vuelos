@@ -23,6 +23,7 @@
             <div id="adminControls" class="hidden">
                 <button class="btn-action btn-admin" onclick="crearVuelo()">+ Nuevo Vuelo</button>
                 <button class="btn-action btn-admin" onclick="gestionarUsuarios()">Gestionar Usuarios</button>
+                <button class="btn-action btn-admin" onclick="gestionarNaves()">Gestionar Naves</button>
             </div>
 
             <div id="gestorControls" class="hidden">
@@ -55,6 +56,139 @@
                         </tr>
                     </thead>
                     <tbody id="listaReservasBody">
+                        </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="modalVuelo" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Registrar Nuevo Vuelo</h3>
+                <button class="btn-close" onclick="cerrarModalVuelo()">X</button>
+            </div>
+            <div class="modal-body">
+                <form id="formCrearVuelo">
+                    <div class="form-group">
+                        <label for="vueloOrigen">Origen:</label>
+                        <input type="text" id="vueloOrigen" required placeholder="Ej: Bogotá">
+                    </div>
+                    <div class="form-group">
+                        <label for="vueloDestino">Destino:</label>
+                        <input type="text" id="vueloDestino" required placeholder="Ej: Miami">
+                    </div>
+                    <div class="form-group">
+                        <label for="vueloSalida">Fecha y Hora Salida:</label>
+                        <input type="datetime-local" id="vueloSalida" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="vueloLlegada">Fecha y Hora Llegada:</label>
+                        <input type="datetime-local" id="vueloLlegada" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="vueloPrecio">Precio (COP):</label>
+                        <input type="number" id="vueloPrecio" required min="0" placeholder="Ej: 350000">
+                    </div>
+                    <div class="form-group">
+                        <label for="vueloNave">Asignar Nave:</label>
+                        <select id="vueloNave" required>
+                            <option value="">Cargando naves...</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-action btn-admin">Guardar Vuelo</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast-container"></div>
+
+    <div id="modalConfirm" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Confirmación</h3>
+            </div>
+            <div class="modal-body">
+                <p id="msgConfirm">¿Está seguro de realizar esta acción?</p>
+                <div class="modal-confirm-actions">
+                    <button class="btn-confirm-no" onclick="cerrarConfirm()">Cancelar</button>
+                    <button id="btnConfirmYes" class="btn-confirm-yes">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modalUsuarios" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Gestión de Usuarios</h3>
+                <button class="btn-close" onclick="cerrarModalUsuarios()">X</button>
+            </div>
+            <div class="modal-body">
+                
+                <div class="user-form-box">
+                    <h4 class="form-title">Registrar Nuevo Usuario</h4>
+                    <form id="formCrearUsuario" class="user-form-grid">
+                    <input type="text" id="newUserName" placeholder="Nombre" required class="input-sm" aria-label="Nombre del Usuario">
+                    <input type="email" id="newUserEmail" placeholder="Correo" required class="input-sm" aria-label="Correo Electrónico">
+                    <input type="password" id="newUserPass" placeholder="Contraseña" required class="input-sm" aria-label="Contraseña">
+                    
+                    <select id="newUserRole" class="input-sm" aria-label="Seleccionar Rol">
+                        <option value="gestor">Gestor</option>
+                        <option value="administrador">Administrador</option>
+                    </select>
+                    
+                    <button type="submit" class="btn-action btn-admin btn-full">Crear Usuario</button>
+                </form>
+                </div>
+
+                <table class="table-clean">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Correo</th>
+                            <th>Rol</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="listaUsuariosBody">
+                        </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="modalNaves" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Gestión de Aeronaves</h3>
+                <button class="btn-close" onclick="cerrarModalNaves()">X</button>
+            </div>
+            <div class="modal-body">
+                
+                <div class="user-form-box">
+                    <h4 class="form-title">Registrar Nueva Nave</h4>
+                    <form id="formCrearNave" class="user-form-grid">
+                        <input type="text" id="newNaveName" placeholder="Nombre (Ej: A1)" required class="input-sm" aria-label="Nombre de la Nave">
+                        <input type="text" id="newNaveModel" placeholder="Modelo (Ej: Boeing 737)" required class="input-sm" aria-label="Modelo">
+                        <input type="number" id="newNaveCap" placeholder="Capacidad" required class="input-sm" aria-label="Capacidad">
+                        <button type="submit" class="btn-action btn-admin btn-full">Guardar Nave</button>
+                    </form>
+                </div>
+
+                <table class="table-clean">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Modelo</th>
+                            <th>Capacidad</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="listaNavesBody">
                         </tbody>
                 </table>
             </div>

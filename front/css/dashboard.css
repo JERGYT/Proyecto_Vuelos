@@ -166,3 +166,120 @@ body {
 .table-clean th { background-color: #f2f2f2; color: #333; }
 .status-activa { color: green; font-weight: bold; }
 .status-cancelada { color: red; font-weight: bold; }
+
+.form-group {
+    margin-bottom: 15px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 3000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.toast {
+    background: white;
+    padding: 15px 20px;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+    min-width: 250px;
+    animation: slideIn 0.3s ease-out;
+    border-left: 5px solid #333;
+}
+
+.toast-success { border-color: #27ae60; }
+.toast-success::before { content: '✅ '; margin-right: 10px; }
+
+.toast-error { border-color: #c0392b; }
+.toast-error::before { content: '❌ '; margin-right: 10px; }
+
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+.modal-confirm-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-confirm-yes {
+    background-color: #27ae60;
+    color: white;
+    padding: 8px 20px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+.btn-confirm-no {
+    background-color: #95a5a6;
+    color: white;
+    padding: 8px 20px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+.user-form-box {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    border: 1px solid #eee;
+}
+
+.form-title {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #555;
+}
+.user-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+}
+
+.input-sm {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%; 
+    box-sizing: border-box;
+}
+
+.btn-full {
+    grid-column: 1 / -1;
+    margin-top: 5px;
+    width: 100%;
+}
+#modalConfirm {
+    z-index: 3000 !important;
+}
+
+#toast-container {
+    z-index: 4000 !important;
+}
