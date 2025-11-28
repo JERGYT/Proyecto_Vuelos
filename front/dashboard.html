@@ -1,3 +1,66 @@
-<h1>Panel Principal</h1>
-<p>Login exitoso.</p>
-<button onclick="localStorage.clear(); window.location.href='index.html'">Cerrar Sesión</button>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Principal</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-brand">Gestión de Vuelos</div>
+        <div class="nav-controls">
+            <span id="userInfo">Cargando...</span>
+            <button id="btnLogout" class="btn-logout">Salir</button>
+        </div>
+    </nav>
+
+    <main class="main-container">
+        <h2>Panel de Control</h2>
+
+        <div class="toolbar">
+            <div id="adminControls" class="hidden">
+                <button class="btn-action btn-admin" onclick="crearVuelo()">+ Nuevo Vuelo</button>
+                <button class="btn-action btn-admin" onclick="gestionarUsuarios()">Gestionar Usuarios</button>
+            </div>
+
+            <div id="gestorControls" class="hidden">
+                <button class="btn-action btn-gestor" onclick="verReservas()">Ver Reservas</button>
+            </div>
+        </div>
+
+        <hr class="separator">
+
+        <div id="flightsGrid" class="flights-grid">
+            <p>Cargando datos...</p>
+        </div>
+    </main>
+
+    <div id="modalReservas" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Listado de Reservas</h3>
+                <button class="btn-close" onclick="cerrarModal()">X</button>
+            </div>
+            <div class="modal-body">
+                <table class="table-clean">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Vuelo</th>
+                            <th>Usuario</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="listaReservasBody">
+                        </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

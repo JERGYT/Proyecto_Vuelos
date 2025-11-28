@@ -1,4 +1,3 @@
-
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
@@ -65,32 +64,3 @@ body {
 }
 
 .btn-primary:hover { background-color: #076cb8; }
-
-
-
-.debug-banner {
-    background-color: #ffeaa7;
-    color: #d63031;
-    font-size: 0.8rem;
-    text-align: center;
-    padding: 8px;
-    border-radius: 4px;
-    margin-bottom: 15px;
-    border: 1px dashed #d63031;
-}
-
-.btn-debug {
-    background-color: #d63031;
-    color: white;
-    margin-top: 20px;
-    font-size: 0.8rem;
-    opacity: 0.8;
-}
-
-.error-text {
-    color: #d63031;
-    text-align: center;
-    margin-top: 1rem;
-    display: none;
-    font-size: 0.9rem;
-}
