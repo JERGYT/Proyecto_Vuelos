@@ -12,8 +12,5 @@ return function (App $app) {
     $app->put('/users/{id}', [UsersController::class, 'update']); // Modificar
     $app->delete('/users/{id}', [UsersController::class, 'delete']); // Eliminar
 
-    $app->get('/', function ($req, $res) {
-        $res->getBody()->write("API Usuarios Activa");
-        return $res;
-    });
+
 };

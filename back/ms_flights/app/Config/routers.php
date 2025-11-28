@@ -6,10 +6,6 @@ use App\Controllers\ReservationsController;
 
 return function (App $app) {
     
-    $app->get('/', function ($req, $res) {
-        $res->getBody()->write("API Vuelos Activa");
-        return $res;
-    });
 
     $app->group('/api', function ($group) {
         
