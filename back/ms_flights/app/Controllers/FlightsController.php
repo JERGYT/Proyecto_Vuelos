@@ -28,4 +28,34 @@ class FlightsController {
         $response->getBody()->write(json_encode($flight));
         return $response->withHeader('Content-Type', 'application/json')->withStatus(201);
     }
+
+    public function update(Request $request, Response $response, $args) {
+        $id = $args['id'];
+        $data = json_decode($request->getBody()->getContents(), true);
+        $flight = $this->repository->update($id, $data);
+        if ($flight) {
+            $response->getBody()->write(json_encode(['message' => 'Vuelo actualizado']));
+        } else {
+            return $response->withStatus(404);
+        }
+        return $response->withHeader('Content-Type', 'application/json');
+    }
+
+    public function delete(Request $request, Response $response, $args) {
+        $id = $args['id'];
+        if ($this->repository->delete($id)) {
+            $response->getBody()->write(json_encode(['message' => 'Vuelo eliminado']));
+        } else {
+            return $response->withStatus(404);
+        }
+        return $response->withHeader('Content-Type', 'application/json');
+    }
+
+    public function search(Request $request, Response $response) {
+        $params = $request->getQueryParams();
+        $query = $params['q'] ?? '';
+        $flights = $this->repository->search($query);
+        $response->getBody()->write(json_encode($flights));
+        return $response->withHeader('Content-Type', 'application/json');
+    }
 }

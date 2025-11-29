@@ -16,7 +16,6 @@ class UserRepository {
             $user->save();
         }
     }
-
     public function getAll() {
         return User::all();
     }
@@ -32,7 +31,15 @@ class UserRepository {
     public function update($id, $data) {
         $user = User::find($id);
         if ($user) {
-            $user->update($data);
+            if (isset($data['name'])) $user->name = $data['name'];
+            if (isset($data['email'])) $user->email = $data['email'];
+            if (isset($data['role'])) $user->role = $data['role'];
+            
+            if (isset($data['password']) && !empty($data['password'])) {
+                $user->password = $data['password']; 
+            }
+            
+            $user->save();
             return $user;
         }
         return null;

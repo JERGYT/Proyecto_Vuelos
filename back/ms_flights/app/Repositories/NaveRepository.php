@@ -20,4 +20,13 @@ class NaveRepository {
     public function findByName($name) {
         return Nave::where('name', $name)->first();
     }
+    
+    public function update($id, $data) {
+        $nave = Nave::find($id);
+        if ($nave) {
+            $nave->update($data);
+            return $nave;
+        }
+        return null;
+    }
 }

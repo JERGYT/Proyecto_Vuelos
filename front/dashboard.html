@@ -15,7 +15,6 @@
             <button id="btnLogout" class="btn-logout">Salir</button>
         </div>
     </nav>
-
     <main class="main-container">
         <h2>Panel de Control</h2>
 
@@ -31,6 +30,32 @@
             </div>
         </div>
 
+        <div class="search-bar" style="margin: 20px 0; display: flex; gap: 10px;">
+            <input type="text" id="searchInput" 
+                placeholder="Buscar por origen, destino o fecha (DD/MM/YYYY)..." 
+                class="input-sm" style="flex: 1; padding: 10px;">
+                
+            <button class="btn-action btn-admin" onclick="buscarVuelos()">Buscar</button>
+            <button class="btn-action btn-gestor" onclick="cargarVuelos()">Limpiar</button>
+        </div>
+
+        <div id="modalEditar" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="tituloEditar">Editar Registro</h3>
+                    <button class="btn-close" onclick="cerrarModalEditar()">X</button>
+                </div>
+                <div class="modal-body">
+                    <form id="formEditar">
+                        <input type="hidden" id="editId">
+                        <input type="hidden" id="editType"> <div id="camposEditar" class="user-form-grid" style="grid-template-columns: 1fr;">
+                            </div>
+                        <button type="submit" class="btn-action btn-admin btn-full" style="margin-top:15px">Guardar Cambios</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
         <hr class="separator">
 
         <div id="flightsGrid" class="flights-grid">
@@ -40,25 +65,32 @@
 
     <div id="modalReservas" class="modal hidden">
         <div class="modal-content">
-            <div class="modal-header">
-                <h3>Listado de Reservas</h3>
-                <button class="btn-close" onclick="cerrarModal()">X</button>
+                <div class="modal-header">
+                    <h3>Listado de Reservas</h3>
+                    <button class="btn-close" onclick="cerrarModal()">X</button>
+                </div>
+                <div class="modal-body">
+            
+            <div class="filter-bar">
+                <input type="number" id="filterUserId" placeholder="Filtrar por ID de Usuario..." class="input-sm" aria-label="Filtrar Usuario">
+                <button class="btn-action btn-gestor" onclick="verReservas()">Filtrar</button>
+                <button class="btn-action btn-admin" onclick="limpiarFiltroReservas()">Ver Todos</button>
             </div>
-            <div class="modal-body">
-                <table class="table-clean">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Vuelo</th>
-                            <th>Usuario</th>
-                            <th>Estado</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody id="listaReservasBody">
-                        </tbody>
-                </table>
-            </div>
+
+            <table class="table-clean">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Vuelo</th>
+                        <th>Usuario</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="listaReservasBody">
+                    </tbody>
+            </table>
+        </div>
         </div>
     </div>
 
@@ -191,6 +223,34 @@
                     <tbody id="listaNavesBody">
                         </tbody>
                 </table>
+            </div>
+        </div>
+    </div>
+    
+    <div id="modalEditarUsuario" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Editar Datos de Usuario</h3>
+                <button class="btn-close" onclick="cerrarModalEditarUsuario()">X</button>
+            </div>
+            <div class="modal-body">
+                <div class="user-form-box">
+                    <form id="formEditarUsuario" class="user-form-grid">
+                        <input type="hidden" id="editUserId">
+                        
+                        <input type="text" id="editUserName" placeholder="Nombre" required class="input-sm" aria-label="Nombre">
+                        <input type="email" id="editUserEmail" placeholder="Correo" required class="input-sm" aria-label="Correo">
+                        
+                        <input type="password" id="editUserPass" placeholder="Nueva Contraseña (Opcional)" class="input-sm" aria-label="Contraseña">
+                        
+                        <select id="editUserRole" class="input-sm" aria-label="Rol">
+                            <option value="gestor">Gestor</option>
+                            <option value="administrador">Administrador</option>
+                        </select>
+                        
+                        <button type="submit" class="btn-action btn-admin btn-full">Guardar Cambios</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

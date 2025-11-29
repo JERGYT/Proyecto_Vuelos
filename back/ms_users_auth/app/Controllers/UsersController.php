@@ -72,16 +72,16 @@ class UsersController {
     public function update(Request $request, Response $response, $args) {
         $id = $args['id'];
         $data = json_decode($request->getBody()->getContents(), true);
-
+        
         $user = $this->repository->update($id, $data);
 
         if ($user) {
-            $response->getBody()->write(json_encode($user));
-            return $response->withHeader('Content-Type', 'application/json');
+            $response->getBody()->write(json_encode(['message' => 'Usuario actualizado correctamente']));
+        } else {
+            $response->getBody()->write(json_encode(['error' => 'Usuario no encontrado']));
+            return $response->withStatus(404);
         }
-
-        $response->getBody()->write(json_encode(['error' => 'No se pudo actualizar']));
-        return $response->withStatus(404)->withHeader('Content-Type', 'application/json');
+        return $response->withHeader('Content-Type', 'application/json');
     }
 
     public function delete(Request $request, Response $response, $args) {
@@ -96,4 +96,5 @@ class UsersController {
         $response->getBody()->write(json_encode(['error' => 'No se pudo eliminar']));
         return $response->withStatus(404)->withHeader('Content-Type', 'application/json');
     }
+    
 }

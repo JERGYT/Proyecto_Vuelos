@@ -15,6 +15,22 @@ class FlightRepository {
         return Flight::with('nave')
             ->where('origin', 'like', "%$query%")
             ->orWhere('destination', 'like', "%$query%")
+            ->orWhere('departure', 'like', "%$query%")
             ->get();
+    }
+
+    public function update($id, $data) {
+        $flight = Flight::find($id);
+        if ($flight) {
+            $flight->update($data);
+            return $flight;
+        }
+        return null;
+    }
+
+    public function delete($id) {
+        $flight = Flight::find($id);
+        if ($flight) return $flight->delete();
+        return false;
     }
 }

@@ -16,7 +16,6 @@ class NavesController {
         $response->getBody()->write(json_encode($naves));
         return $response->withHeader('Content-Type', 'application/json');
     }
-
     public function store(Request $request, Response $response) {
         $data = json_decode($request->getBody()->getContents(), true);
         
@@ -53,6 +52,18 @@ class NavesController {
             $response->getBody()->write(json_encode(['message' => 'Nave eliminada']));
         } else {
             $response->getBody()->write(json_encode(['error' => 'No encontrada']));
+            return $response->withStatus(404);
+        }
+        return $response->withHeader('Content-Type', 'application/json');
+    }
+    
+    public function update(Request $request, Response $response, $args) {
+        $id = $args['id'];
+        $data = json_decode($request->getBody()->getContents(), true);
+        $nave = $this->repository->update($id, $data);
+        if ($nave) {
+            $response->getBody()->write(json_encode(['message' => 'Nave actualizada']));
+        } else {
             return $response->withStatus(404);
         }
         return $response->withHeader('Content-Type', 'application/json');

@@ -22,7 +22,14 @@ class ReservationsController {
     }
 
     public function index(Request $request, Response $response) {
-        $reservations = $this->repository->getAll();
+        $queryParams = $request->getQueryParams();
+        
+        if (isset($queryParams['user_id']) && !empty($queryParams['user_id'])) {
+            $reservations = $this->repository->getByUserId($queryParams['user_id']);
+        } else {
+            $reservations = $this->repository->getAll();
+        }
+
         $response->getBody()->write(json_encode($reservations));
         return $response->withHeader('Content-Type', 'application/json');
     }
